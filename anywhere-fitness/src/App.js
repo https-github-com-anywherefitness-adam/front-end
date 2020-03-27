@@ -1,26 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from "react";
+import Register from './components/Register'
+import Success from './components/Success';
+import Login from './components/Login';
 import './App.css';
 
-function App() {
+// class Apps extends Component {
+//   render() {
+//     return (      
+//        <BrowserRouter>
+//         <div>
+//           <Navigation />
+//             <Switch>
+//              <Route path="/" component={Home} exact/>
+//              <Route path="/Login" component={Login}/>
+//              <Route path="/Register" component={Register}/>
+//             <Route component={Error}/>
+//            </Switch>
+//         </div> 
+//       </BrowserRouter>
+//     );
+//   }
+// }
+ 
+//export default Apps;
+export default function App() {
+  const [formSuccess, setFormSuccess] = useState(false);
+  const formSubmit = () => {
+    setFormSuccess(true);
+  };
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {formSuccess ? <Success /> : <Register submitHandler={formSubmit} />}
+      <Login />
+      
     </div>
   );
 }
 
-export default App;
