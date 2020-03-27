@@ -8,7 +8,7 @@ const ClassList = () => {
 
   useEffect(() => {
     axiosWithAuth()
-      .get("")
+      .get("/api/class")
       .then(res => {
         console.log(res.data);
         setClassList(res.data);
@@ -17,8 +17,20 @@ const ClassList = () => {
   }, []);
 
   return (
-    <>
+    <div>
       <h2>Class List</h2>
-    </>
+      {classList.map(singleclass => (
+        <div>
+          <p>Class Name: {singleclass.name}</p>
+          <p>Class Type: {singleclass.type}</p>
+          <p>Class Start Time: {singleclass.start_time}</p>
+          <p>Duration: {singleclass.duration}</p>
+          <p>Registered Attendees: {singleclass.registered}</p>
+          <p>Max Class Size: {singleclass.max_size}</p>
+        </div>
+      ))}
+    </div>
   );
 };
+
+export default ClassList;
