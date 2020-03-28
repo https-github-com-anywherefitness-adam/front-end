@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import axios from "axios";
-import "../App.css";
 
-const CreateClass = () => {
+import "../App.css";
+import { axiosWithAuth } from "../utils/axiosWithAuth";
+
+const CreateClass = props => {
   const [newClass, setNewClass] = useState({
     name: "",
     type: "",
@@ -10,26 +12,30 @@ const CreateClass = () => {
     duration: "",
     intensity: "",
     location: "",
-    registered: "",
-    max_size: ""
+    registered: 0,
+    max_size: 0
   });
 
   const handleChanges = e => {
     setNewClass({ ...newClass, [e.target.name]: e.target.value });
   };
 
-  const onSubmit = () => {
+  const onSubmit = e => {
+    e.preventDefault();
+    console.log(newClass);
     axios
       .post("https://anytime-fitness-be.herokuapp.com/api/class", newClass)
       .then(res => {
         console.log("class data", res);
         setNewClass(res.data);
+        props.history.push("/protected");
       })
       //  .then(history.push("/"))
       .catch(err => console.log(err));
   };
   return (
     <div>
+      <h2>Create New Class</h2>
       <form onSubmit={onSubmit}>
         <p>
           <input
@@ -95,7 +101,7 @@ const CreateClass = () => {
             id="max_size"
           />
         </p>
-        <button type="submit">Create New Class</button>
+        <button type="submit">Add New Class</button>
       </form>
     </div>
   );

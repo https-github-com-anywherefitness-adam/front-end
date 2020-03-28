@@ -1,13 +1,47 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-//import styled from"styled-component";
+import styled from "styled-components";
 import axios from "axios";
+
+const Button = styled.div`
+  width: 15%;
+  margin: 0 auto;
+  border-radius: 1.5rem;
+  background-color: #ffc357;
+  box-shadow: 2px 2px #d88144;
+  color: #084f93;
+  font-size: 1.5rem;
+  font-weight: bold;
+`;
+
+const Input = styled.input`
+  width: 200px;
+  padding: 10px;
+  margin: 10px;
+  font-size: 1.2rem;
+  border-box: 1px solid, black;
+  border-radius: 5px;
+  cursor: pointer;
+  &:hover {
+    background-image: none;
+    background-color: #4dd0e1;
+  }
+  &:disabled {
+    background-image: none;
+    background-color: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    color: rgba(0, 0, 0, 0.1);
+    cursor: not-allowed;
+  }
+`;
+
 // const Input = styled.input`
 // width: 100%;
 // margin: 45px;
 // padding:20px;
 // `
 const Login = props => {
+  console.log(props);
   const [user, setUser] = useState({ username: "", email: "", password: "" });
   const handleChange = event => {
     setUser({ ...user, [event.target.name]: event.target.value });
@@ -20,7 +54,7 @@ const Login = props => {
       .then(res => {
         console.log("Log in data", res.data);
         localStorage.setItem("token", res.data.token);
-        props.history.push("/protected");
+        window.location.href = "/";
       })
       .catch(error => {
         console.log(error);
@@ -31,37 +65,36 @@ const Login = props => {
       {console.log(user)}
       <h1> Log In</h1>
       <form onSubmit={handleSubmit}>
-        <label>
-          Username:
-          <input
-            type="text"
-            name="username"
-            value={user.username}
-            onChange={handleChange}
-          />
-        </label>
+        <Input
+          type="text"
+          placeholder="Username"
+          name="username"
+          value={user.username}
+          onChange={handleChange}
+        />
+
         <br />
-        <label>
-          Email:
-          <input
-            type="text"
-            name="email"
-            value={user.email}
-            onChange={handleChange}
-          />
-        </label>
+        <Input
+          type="text"
+          placeholder="Email"
+          name="email"
+          value={user.email}
+          onChange={handleChange}
+        />
         <br />
-        <label>
-          Password:
-          <input
-            type="password"
-            name="password"
-            value={user.password}
-            onChange={handleChange}
-          />
-        </label>
+        <Input
+          type="password"
+          placeholder="Password"
+          name="password"
+          value={user.password}
+          onChange={handleChange}
+        />
         <br />
-        <button type="submit">Submit!</button>
+        <Button onClick={handleSubmit}>Submit!</Button>
+        <p>
+          If you do not have a user account, please{" "}
+          <a href="/register">register</a>
+        </p>
       </form>
     </div>
   );
