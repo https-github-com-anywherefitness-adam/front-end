@@ -6,20 +6,22 @@ import axios from "axios";
 
 
 const Input = styled.input`
-width: 50%;
+width: 100%;
 display:flex;
 font-size: 1.2rem;
-margin: 10px;
-padding: 10px 190px;
+justify-content:center;
+
+
 border-box: 1px solid,black;
 border-radius: 5px;
 cursor: pointer;
-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+
+
 
   &:hover {
     background-image: none;
     background-color: #4dd0e1;
-    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3);
+    
   }
 
   &:disabled {
@@ -50,7 +52,7 @@ function App() {
     .catch(error => {console.log(error)})
   };
   return (
-    <div className="App">
+    <div className="App" style ={{margin:"0 auto"}}> 
       {console.log(user)}
       <h1> Log In</h1>
 
