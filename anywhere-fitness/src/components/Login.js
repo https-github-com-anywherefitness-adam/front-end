@@ -93,7 +93,7 @@ const Login = props => {
         <Button onClick={handleSubmit}>Submit!</Button>
         <p>
           If you do not have a user account, please{" "}
-          <a href="/register">register</a>
+          <Link to="/register">register</Link>
         </p>
       </form>
     </div>
