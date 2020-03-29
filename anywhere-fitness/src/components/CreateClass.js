@@ -28,7 +28,7 @@ const CreateClass = props => {
       .then(res => {
         console.log("class data", res);
         setNewClass(res.data);
-        props.history.push("/protected");
+        window.location.href = "/";
       })
       //  .then(history.push("/"))
       .catch(err => console.log(err));
