@@ -1,8 +1,20 @@
 import React, { useState } from "react";
 import axios from "axios";
+import styled from "styled-components";
 
 import "../App.css";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
+
+const Button = styled.div`
+  width: 15%;
+  margin: 0 auto;
+  border-radius: 1.5rem;
+  background-color: #ffc357;
+  box-shadow: 2px 2px #d88144;
+  color: #084f93;
+  font-size: 1.2rem;
+  font-weight: bold;
+`;
 
 const CreateClass = props => {
   const [newClass, setNewClass] = useState({
@@ -36,7 +48,7 @@ const CreateClass = props => {
   return (
     <div>
       <h2>Create New Class</h2>
-      <form onSubmit={onSubmit}>
+      <form>
         <p>
           <input
             placeholder="Name"
@@ -101,7 +113,7 @@ const CreateClass = props => {
             id="max_size"
           />
         </p>
-        <button type="submit">Add New Class</button>
+        <Button onClick={onSubmit}>Add New Class</Button>
       </form>
     </div>
   );
